@@ -194,6 +194,7 @@
      * @enum {string}
      */
     Runner.sounds = {
+        JUMP: 'offline-sound-jump',
         BUTTON_PRESS: 'offline-sound-press',
         HIT: 'offline-sound-hit',
         SCORE: 'offline-sound-reached'
@@ -309,23 +310,22 @@
          * Load and decode base 64 encoded sounds.
          */
         loadSounds: function () {
-            if (!IS_IOS) {
-                this.audioContext = new AudioContext();
+            var AudioContext = window.AudioContext || window.webkitAudioContext;  
+            this.audioContext = new AudioContext();
 
-                var resourceTemplate =
-                    document.getElementById(this.config.RESOURCE_TEMPLATE_ID).content;
+            var resourceTemplate =
+                document.getElementById(this.config.RESOURCE_TEMPLATE_ID).content;
 
-                for (var sound in Runner.sounds) {
-                    var soundSrc =
-                        resourceTemplate.getElementById(Runner.sounds[sound]).src;
-                    soundSrc = soundSrc.substr(soundSrc.indexOf(',') + 1);
-                    var buffer = decodeBase64ToArrayBuffer(soundSrc);
+            for (var sound in Runner.sounds) {
+                var soundSrc =
+                    resourceTemplate.getElementById(Runner.sounds[sound]).src;
+                soundSrc = soundSrc.substr(soundSrc.indexOf(',') + 1);
+                var buffer = decodeBase64ToArrayBuffer(soundSrc);
 
-                    // Async, so no guarantee of order in array.
-                    this.audioContext.decodeAudioData(buffer, function (index, audioData) {
-                        this.soundFx[index] = audioData;
-                    }.bind(this, sound));
-                }
+                // Async, so no guarantee of order in array.
+                this.audioContext.decodeAudioData(buffer, function (index, audioData) {
+                    this.soundFx[index] = audioData;
+                }.bind(this, sound));
             }
         },
 
@@ -685,7 +685,7 @@
                     }
                     // Start jump.
                     if (!this.tRex.jumping && !this.tRex.ducking) {
-                        this.playSound(this.soundFx.BUTTON_PRESS);
+                        this.playSound(this.soundFx.JUMP);
                         this.tRex.startJump(this.currentSpeed);
                     }
                 } else if (this.playing && Runner.keycodes.DUCK[e.keyCode]) {
@@ -2433,7 +2433,7 @@
          * Set the source dimensions of the horizon line.
          */
         setSourceDimensions: function () {
-
+            console.log(IS_HIDPI)
             for (var dimension in HorizonLine.dimensions) {
                 if (IS_HIDPI) {
                     if (dimension != 'YPOS') {
