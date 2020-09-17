@@ -1,14 +1,27 @@
 /* Copyright 2017 The Chromium Authors. All rights reserved.
    * Use of this source code is governed by a BSD-style license that can be
    * found in the LICENSE file. */
-
+* {
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+}
 a {
     color: rgb(88, 88, 88);
 }
 
 body {
-    background-color: rgb(247, 247, 247);
+    /* background-color: #333; */
+    background: #333;
     color: rgb(100, 100, 100);
+}
+canvas {
+    background-color: rgb(189, 245, 255);
+    transition: background-color 1.5s ease;
+}
+canvas.inverted {
+    background-color: #000;
 }
 
 html {
@@ -29,6 +42,44 @@ html {
     width: 100%;
 }
 
+.buttons {
+    margin-top:130px;
+    text-align: center;
+}
+.buttons p {
+    color:#999;
+    margin-top: 25px;
+}
+.button {
+    position: relative;
+    z-index: 9999;
+    display: inline-block;
+    width:150px;
+    height: 150px;
+    cursor: pointer;
+    border: 4px solid rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    background-color: #ff9191;
+    /* background: linear-gradient(to top, #46BEE0, #52D1F2); */
+    box-shadow: 0 8px 0px #d59699;
+    font-size: 34px;
+    color:#ffe306;
+    transition: all 0.1s ease;
+    -webkit-transition: all 0.1s ease;
+    font-weight: bold;
+    /* -webkit-text-stroke: 2px rgba(0, 0, 0, 0.1); */
+    box-sizing: border-box;
+}
+.button:active {
+    transform-origin: center bottom;
+    box-shadow: 0 0 0px #ffd8d8;
+    transform: translateY(5px) scale(0.95);
+    /* -webkit-transform: translateY(5px); */
+    background-color: #f77373;
+}
+.button:focus {
+    outline: none;
+}
 @media (max-width: 700px) {
     .interstitial-wrapper {
         padding: 0 10%;
@@ -111,7 +162,6 @@ html {
 * Use of this source code is governed by a BSD-style license that can be
 * found in the LICENSE file. */
 
-
 .snackbar {
     background: #323232;
     border-radius: 2px;
@@ -173,7 +223,7 @@ html {
 
 .offline .runner-container {
     direction: ltr;
-    height: 150px;
+    height: 160px;
     max-width: 600px;
     overflow: hidden;
     position: absolute;
@@ -182,7 +232,7 @@ html {
 }
 
 .offline .runner-canvas {
-    height: 150px;
+    height: 160px;
     max-width: 600px;
     opacity: 1;
     overflow: hidden;

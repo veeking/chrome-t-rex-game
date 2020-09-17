@@ -19,6 +19,7 @@
         Runner.instance_ = this;
 
         this.outerContainerEl = document.querySelector(outerContainerId);
+        this.jumpBtnEl = document.getElementById('jumpBtn')
         this.containerEl = null;
         this.snackbarEl = null;
 
@@ -107,19 +108,19 @@
     Runner.config = {
         ACCELERATION: 0.001,
         BG_CLOUD_SPEED: 0.2,
-        BOTTOM_PAD: 10,
+        BOTTOM_PAD: 18,
         CLEAR_TIME: 3000,
         CLOUD_FREQUENCY: 0.5,
-        GAMEOVER_CLEAR_TIME: 750,
+        GAMEOVER_CLEAR_TIME: 20,
         GAP_COEFFICIENT: 0.6,
         GRAVITY: 0.6,
         INITIAL_JUMP_VELOCITY: 12,
-        INVERT_FADE_DURATION: 12000,
-        INVERT_DISTANCE: 700,
-        MAX_BLINK_COUNT: 3,
+        INVERT_FADE_DURATION: 10000,
+        INVERT_DISTANCE: 70,
+        MAX_BLINK_COUNT: 200,
         MAX_CLOUDS: 6,
         MAX_OBSTACLE_LENGTH: 3,
-        MAX_OBSTACLE_DUPLICATION: 2,
+        MAX_OBSTACLE_DUPLICATION: 3,
         MAX_SPEED: 13,
         MIN_JUMP_HEIGHT: 35,
         MOBILE_SPEED_COEFFICIENT: 1.2,
@@ -137,7 +138,7 @@
      */
     Runner.defaultDimensions = {
         WIDTH: DEFAULT_WIDTH,
-        HEIGHT: 150
+        HEIGHT: 160
     };
 
 
@@ -384,9 +385,9 @@
 
             this.startListening();
             this.update();
-
             window.addEventListener(Runner.events.RESIZE,
                 this.debounceResize.bind(this));
+            this.jumpBtnEl.addEventListener('touchstart', this.onKeyDown.bind(this))
         },
 
         /**
@@ -669,7 +670,6 @@
             if (IS_MOBILE && this.playing) {
                 e.preventDefault();
             }
-
             if (!this.crashed && !this.paused) {
                 if (Runner.keycodes.JUMP[e.keyCode] ||
                     e.type == Runner.events.TOUCHSTART) {
@@ -902,11 +902,11 @@
          */
         invert: function (reset) {
             if (reset) {
-                document.body.classList.toggle(Runner.classes.INVERTED, false);
+                this.canvas.classList.toggle(Runner.classes.INVERTED, false);
                 this.invertTimer = 0;
                 this.inverted = false;
             } else {
-                this.inverted = document.body.classList.toggle(Runner.classes.INVERTED,
+                this.inverted = this.canvas.classList.toggle(Runner.classes.INVERTED,
                     this.invertTrigger);
             }
         }
@@ -993,6 +993,7 @@
         var canvas = document.createElement('canvas');
         canvas.className = opt_classname ? Runner.classes.CANVAS + ' ' +
             opt_classname : Runner.classes.CANVAS;
+        canvas.id = "stage"
         canvas.width = width;
         canvas.height = height;
         container.appendChild(canvas);
@@ -1499,7 +1500,8 @@
             yPos: [100, 75, 50], // Variable height.
             yPosMobile: [100, 50], // Variable height mobile.
             multipleSpeed: 999,
-            minSpeed: 8.5,
+            // minSpeed: 8.5,
+            minSpeed: 6.5,
             minGap: 150,
             collisionBoxes: [
                 new CollisionBox(15, 15, 16, 5),
@@ -1609,7 +1611,7 @@
      * Blinking coefficient.
      * @const
      */
-    Trex.BLINK_TIMING = 7000;
+    Trex.BLINK_TIMING = 1000;
 
 
     /**
@@ -2423,7 +2425,7 @@
      */
     HorizonLine.dimensions = {
         WIDTH: 600,
-        HEIGHT: 12,
+        HEIGHT: 30,
         YPOS: 127
     };
 
@@ -2433,7 +2435,6 @@
          * Set the source dimensions of the horizon line.
          */
         setSourceDimensions: function () {
-            console.log(IS_HIDPI)
             for (var dimension in HorizonLine.dimensions) {
                 if (IS_HIDPI) {
                     if (dimension != 'YPOS') {
@@ -2462,17 +2463,24 @@
          * Draw the horizon line.
          */
         draw: function () {
+            // this.canvasCtx.fillStyle = '#f03'
+            // this.canvasCtx.fillRect(this.xPos[0], this.yPos + 5, this.dimensions.WIDTH, this.sourceDimensions.HEIGHT)
+            // this.canvasCtx.fill()
+
+            // this.canvasCtx.fillRect(this.xPos[1], this.yPos + 5, this.dimensions.WIDTH, this.sourceDimensions.HEIGHT)
+            // this.canvasCtx.fill()
+
             this.canvasCtx.drawImage(Runner.imageSprite, this.sourceXPos[0],
                 this.spritePos.y,
                 this.sourceDimensions.WIDTH, this.sourceDimensions.HEIGHT,
                 this.xPos[0], this.yPos,
-                this.dimensions.WIDTH, this.dimensions.HEIGHT);
+                this.dimensions.WIDTH, this.dimensions.HEIGHT + 20);
 
             this.canvasCtx.drawImage(Runner.imageSprite, this.sourceXPos[1],
                 this.spritePos.y,
                 this.sourceDimensions.WIDTH, this.sourceDimensions.HEIGHT,
                 this.xPos[1], this.yPos,
-                this.dimensions.WIDTH, this.dimensions.HEIGHT);
+                this.dimensions.WIDTH, this.dimensions.HEIGHT + 20);
         },
 
         /**
