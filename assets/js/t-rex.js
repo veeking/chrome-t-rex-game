@@ -668,12 +668,12 @@
         onKeyDown: function (e) {
             // Prevent native page scrolling whilst tapping on mobile.
             if (IS_MOBILE && this.playing) {
-                e.preventDefault();
+                // e.preventDefault();
             }
             if (!this.crashed && !this.paused) {
                 if (Runner.keycodes.JUMP[e.keyCode] ||
                     e.type == Runner.events.TOUCHSTART) {
-                    e.preventDefault();
+                    // e.preventDefault();
                     // Starting the game for the first time.
                     if (!this.playing) {
                         this.loadSounds();
