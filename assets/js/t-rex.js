@@ -20,6 +20,10 @@
 
         this.outerContainerEl = document.querySelector(outerContainerId);
         this.jumpBtnEl = document.getElementById('jumpBtn')
+        this.transformBtnEl = document.getElementById('transformBtn')
+        
+        this.isTransform = false
+
         this.containerEl = null;
         this.snackbarEl = null;
 
@@ -388,6 +392,16 @@
             window.addEventListener(Runner.events.RESIZE,
                 this.debounceResize.bind(this));
             this.jumpBtnEl.addEventListener('touchstart', this.onKeyDown.bind(this))
+            this.transformBtnEl.addEventListener('click', this.onTransform.bind(this))
+        },
+
+        onTransform (event) {
+            if (this.isTransform) {
+                Runner.imageSprite.src = '../../assets/img/offline-sprite-2x-img.png'
+            } else {
+                Runner.imageSprite.src = '../../assets/img/offline-sprite-2x-model-img.png'
+            }
+            this.isTransform = !this.isTransform
         },
 
         /**
@@ -1056,8 +1070,8 @@
     GameOverPanel.dimensions = {
         TEXT_X: 0,
         TEXT_Y: 13,
-        TEXT_WIDTH: 191,
-        TEXT_HEIGHT: 11,
+        TEXT_WIDTH: 193,
+        TEXT_HEIGHT: 14,
         RESTART_WIDTH: 36,
         RESTART_HEIGHT: 32
     };
@@ -1620,7 +1634,7 @@
      */
     Trex.animFrames = {
         WAITING: {
-            frames: [44, 0],
+            frames: [45, 0],
             msPerFrame: 1000 / 3
         },
         RUNNING: {
@@ -1759,7 +1773,7 @@
          * Sets a random time for the blink to happen.
          */
         setBlinkDelay: function () {
-            this.blinkDelay = Math.ceil(Math.random() * Trex.BLINK_TIMING);
+            this.blinkDelay = 0
         },
 
         /**

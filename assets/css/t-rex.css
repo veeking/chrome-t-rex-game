@@ -63,25 +63,39 @@ html {
     cursor: pointer;
     border: 4px solid rgba(0, 0, 0, 0.4);
     border-radius: 50%;
-    background-color: #ff9191;
-    /* background: linear-gradient(to top, #46BEE0, #52D1F2); */
-    box-shadow: 0 8px 0px #d59699;
+    background-color: #ccc;
+    background: linear-gradient(to top, #F3D678, #F8EDC9);
+    box-shadow: 0 6px 0px #d0c39a;
     font-size: 34px;
-    color:#ffe306;
+    color:#f77373;
     transition: all 0.1s ease;
     -webkit-transition: all 0.1s ease;
     font-weight: bold;
-    /* -webkit-text-stroke: 2px rgba(0, 0, 0, 0.1); */
+    -webkit-text-stroke: 2px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
 }
 .button:active {
     transform-origin: center bottom;
     box-shadow: 0 0 0px #ffd8d8;
+    color:#fff;
     transform: translateY(5px) scale(0.95);
     /* -webkit-transform: translateY(5px); */
-    background-color: #f77373;
+    background: #f77373;
 }
-.button:focus {
+.transform {
+    width:100px;
+    height: 50px;
+    background: #9af7ff;
+    border-radius: 40px;
+    border: 4px solid #000;
+    position: relative;
+    z-index: 100000;
+}
+.transform:active {
+    background: #31d4e2;
+
+}
+button:focus {
     outline: none;
 }
 @media (max-width: 700px) {
