@@ -397,10 +397,25 @@
 
         onTransform (event) {
             if (this.isTransform) {
-                Runner.imageSprite.src = '../../assets/img/offline-sprite-2x-img.png'
+                this.transformBtnEl.innerHTML = '切换成暴走模式'
+                if (IS_HIDPI) {
+                    Runner.imageSprite.src = '../../assets/img/offline-sprite-2x-model-img.png'
+                } else {
+                    Runner.imageSprite.src = '../../assets/img/offline-sprite-1x-model-img.png'
+                }
+                this.updateConfigSetting('SPEED', 6)
             } else {
-                Runner.imageSprite.src = '../../assets/img/offline-sprite-2x-model-img.png'
+                this.transformBtnEl.innerHTML = '切换回普通模式'
+                if (IS_HIDPI) {
+                    Runner.imageSprite.src = '../../assets/img/offline-sprite-2x-model-hard-img.png'
+                } else {
+                    Runner.imageSprite.src = '../../assets/img/offline-sprite-1x-model-hard-img.png'
+                }
+                // Runner.imageSprite.src = '../../assets/img/offline-sprite-2x-img.png'
+                this.updateConfigSetting('SPEED', 16)
             }
+            this.canvas.classList.toggle('is-hard')
+            this.transformBtnEl.classList.toggle('is-normal')
             this.isTransform = !this.isTransform
         },
 
