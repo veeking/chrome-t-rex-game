@@ -413,6 +413,9 @@
                 }
                 // Runner.imageSprite.src = '../../assets/img/offline-sprite-2x-img.png'
                 this.updateConfigSetting('SPEED', 12)
+                if (this.horizon) {
+                  this.horizon.updateSpeed(50)
+                }
             }
             this.canvas.classList.toggle('is-hard')
             this.transformBtnEl.classList.toggle('is-normal')
@@ -2631,6 +2634,14 @@
             if (updateObstacles) {
                 this.updateObstacles(deltaTime, currentSpeed);
             }
+        },
+
+        /**
+         * Update the cloud speed.
+         * @param {number} value
+         */
+        updateSpeed: function (value) {
+          this.cloudSpeed = value
         },
 
         /**
