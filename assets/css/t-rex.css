@@ -87,7 +87,7 @@ html {
 }
 .transform {
     position: fixed;
-    bottom: 10%;
+    bottom: 20%;
     right: 0;
     width:120px;
     height: 50px;
@@ -114,6 +114,10 @@ html {
 }
 button:focus {
     outline: none;
+}
+.info {
+    position: absolute;
+    bottom: 1%;
 }
 @media (max-width: 700px) {
     .interstitial-wrapper {
