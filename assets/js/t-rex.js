@@ -122,7 +122,7 @@
         INVERT_FADE_DURATION: 10000,
         INVERT_DISTANCE: 70,
         MAX_BLINK_COUNT: 200,
-        MAX_CLOUDS: 6,
+        MAX_CLOUDS: 12,
         MAX_OBSTACLE_LENGTH: 3,
         MAX_OBSTACLE_DUPLICATION: 3,
         MAX_SPEED: 13,
@@ -412,7 +412,7 @@
                     Runner.imageSprite.src = '../../assets/img/offline-sprite-1x-model-hard-img.png'
                 }
                 // Runner.imageSprite.src = '../../assets/img/offline-sprite-2x-img.png'
-                this.updateConfigSetting('SPEED', 16)
+                this.updateConfigSetting('SPEED', 12)
             }
             this.canvas.classList.toggle('is-hard')
             this.transformBtnEl.classList.toggle('is-normal')
