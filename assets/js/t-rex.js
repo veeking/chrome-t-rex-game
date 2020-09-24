@@ -21,6 +21,7 @@
         this.outerContainerEl = document.querySelector(outerContainerId);
         this.jumpBtnEl = document.getElementById('jumpBtn')
         this.transformBtnEl = document.getElementById('transformBtn')
+        this.bgAudioEl = document.getElementById('bgAudio')
         
         this.isTransform = false
 
@@ -404,6 +405,7 @@
                     Runner.imageSprite.src = '../../assets/img/offline-sprite-1x-model-img.png'
                 }
                 this.updateConfigSetting('SPEED', 6)
+                this.bgAudioEl.playbackRate = 1
             } else {
                 this.transformBtnEl.innerHTML = '切换回普通模式'
                 if (IS_HIDPI) {
@@ -413,6 +415,7 @@
                 }
                 // Runner.imageSprite.src = '../../assets/img/offline-sprite-2x-img.png'
                 this.updateConfigSetting('SPEED', 12)
+                this.bgAudioEl.playbackRate = 1.5
                 if (this.horizon) {
                   this.horizon.updateSpeed(50)
                 }
