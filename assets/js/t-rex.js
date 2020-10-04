@@ -400,18 +400,18 @@
             if (this.isTransform) {
                 this.transformBtnEl.innerHTML = '切换成暴走模式'
                 if (IS_HIDPI) {
-                    Runner.imageSprite.src = './assets/img/offline-sprite-2x-model-img.png'
+                    Runner.imageSprite.src = 'https://cdn.hhdd.com/frontend/veeking/chrome-t-rex-game/assets/img/offline-sprite-2x-model-img.png'
                 } else {
-                    Runner.imageSprite.src = './assets/img/offline-sprite-1x-model-img.png'
+                    Runner.imageSprite.src = 'https://cdn.hhdd.com/frontend/veeking/chrome-t-rex-game/assets/img/offline-sprite-1x-model-img.png'
                 }
                 this.updateConfigSetting('SPEED', 6)
                 this.bgAudioEl.playbackRate = 1
             } else {
                 this.transformBtnEl.innerHTML = '切换回普通模式'
                 if (IS_HIDPI) {
-                    Runner.imageSprite.src = './assets/img/offline-sprite-2x-model-hard-img.png'
+                    Runner.imageSprite.src = 'https://cdn.hhdd.com/frontend/veeking/chrome-t-rex-game/assets/img/offline-sprite-2x-model-hard-img.png'
                 } else {
-                    Runner.imageSprite.src = './assets/img/offline-sprite-1x-model-hard-img.png'
+                    Runner.imageSprite.src = 'https://cdn.hhdd.com/frontend/veeking/chrome-t-rex-game/assets/img/offline-sprite-1x-model-hard-img.png'
                 }
                 // Runner.imageSprite.src = '../../assets/img/offline-sprite-2x-img.png'
                 this.updateConfigSetting('SPEED', 12)
